@@ -1,0 +1,16 @@
+{
+  "extends": "airbnb-base",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "@typescript-eslint/consistent-type-definitions": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/return-await": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "no-console": "off",
+    "import/extensions": "off",
+    "linebreak-style": 0,
+    "indent": ["error", "tab"]
+  }
+}
