@@ -1,13 +1,13 @@
 interface Address {
     zipcode: string;
 }
-  
+
 interface Recipient {
     address: Address;
 }
 
-interface Volume {
-    category: number;
+export interface Volume {
+    category: number | string;
     amount: number;
     unitary_weight: number;
     unitary_price: number;
@@ -17,9 +17,8 @@ interface Volume {
     width: number;
     length: number;
 }
-  
-interface Shipping {
+
+export interface Shipping {
     recipient: Recipient;
     volumes: Volume[];
 }
-  

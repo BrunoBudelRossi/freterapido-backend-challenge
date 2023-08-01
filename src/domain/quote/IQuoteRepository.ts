@@ -1,4 +1,7 @@
+/* eslint-disable no-unused-vars */
+import IQuote from 'domain/quote/IQuote';
+
 export default interface IQuoteRepository {
-    create: (quote: Quote) => Promise<any>;
-    // get: (quoteId: string) => Promise<Quote>;
+    create: (quotes: IQuote[]) => Promise<IQuote[]>;
+    find: (lastQuotes?: number) => Promise<IQuote[]>;
 }

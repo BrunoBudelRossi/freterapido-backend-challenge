@@ -2,10 +2,10 @@ import { start } from './infrastructure/webserver/server';
 import { connect, close } from './infrastructure/db/mongo/connection';
 
 try {
-    start();
-    connect();
+	start();
+	connect();
 } catch (err) {
-    console.log(err);
-    close();
-    process.exit(1);
+	console.log(err);
+	close();
+	process.exit(1);
 }
