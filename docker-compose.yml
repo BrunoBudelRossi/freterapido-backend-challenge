@@ -7,12 +7,11 @@ services:
     depends_on:
       - db
   db:
-    image: postgres:latest
+    image: mongo:latest
     environment:
-      POSTGRES_USER: dev
-      POSTGRES_PASSWORD: dev123
-      POSTGRES_DB: dev_db
+      MONGO_INITDB_ROOT_USERNAME: dev
+      MONGO_INITDB_ROOT_PASSWORD: dev123
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - mongodb_data:/data/db
 volumes:
-  postgres_data:
+  mongodb_data:
