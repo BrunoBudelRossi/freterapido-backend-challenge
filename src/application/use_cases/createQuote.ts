@@ -2,6 +2,7 @@ import IQuote from 'domain/quote/IQuote';
 import IQuoteRepository from 'domain/quote/IQuoteRepository';
 import { Volume, Shipping } from 'domain/shipping/IShipping';
 import axiosInstance from 'infrastructure/gateway/axiosClient';
+import { env } from 'config/env';
 
 export default async (
 	quoteRepository: IQuoteRepository,
@@ -11,9 +12,9 @@ export default async (
 
 	const response = await axiosInstance.post('/quote/simulate', {
 		shipper: {
-			registered_number: '25438296000158',
-			token: '1d52a9b6b78cf07b08586152459a5c90',
-			platform_code: '5AKVkHqCn',
+			registered_number: env.freteRapidoRegisteredNumber,
+			token: env.freteRapidoToken,
+			platform_code: env.freteRapidoPlatformCode,
 		},
 		recipient: {
 			type: 1,
@@ -22,8 +23,8 @@ export default async (
 		},
 		dispatchers: [
 			{
-				registered_number: '25438296000158',
-				zipcode: 29161376,
+				registered_number: env.freteRapidoRegisteredNumber,
+				zipcode: env.freteRapidoZipcode,
 				volumes: shipping.volumes.map((volume: Volume) => {
 					volume.unitary_price = volume.price;
 					volume.category = volume.category.toString();
