@@ -1,3 +1,5 @@
 dist
 node_modules
 /*.js
+/*.config.ts
+**/*.spec.ts

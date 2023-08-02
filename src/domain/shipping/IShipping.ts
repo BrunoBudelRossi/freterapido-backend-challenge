@@ -22,3 +22,16 @@ export interface Shipping {
     recipient: Recipient;
     volumes: Volume[];
 }
+
+export interface Offer {
+	carrier: {
+		reference: string;
+		name: string;
+	};
+	final_price: number;
+	service: string;
+}
+
+export interface Dispatcher {
+	offers: Offer[];
+}

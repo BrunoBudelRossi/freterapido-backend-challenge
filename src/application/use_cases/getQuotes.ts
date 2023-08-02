@@ -1,4 +1,4 @@
-import IQuote from 'domain/quote/IQuote';
+import { IQuote, IQuoteByName } from 'domain/quote/IQuote';
 import IQuoteRepository from 'domain/quote/IQuoteRepository';
 
 export default async (
@@ -7,8 +7,8 @@ export default async (
 ) => {
 	const quotes = await quoteRepository.find(lastQuotes);
 
-	const quotesByName = quotes.reduce((acc: any, quote: IQuote) => {
-		const quoteByName = acc.find((item: any) => item.name === quote.name);
+	const quotesByName = quotes.reduce((acc: IQuoteByName[], quote: IQuote) => {
+		const quoteByName = acc.find((item: IQuoteByName) => item.name === quote.name);
 
 		if (quoteByName) {
 			quoteByName.name = quote.name;
@@ -26,7 +26,7 @@ export default async (
 			return acc;
 		}
 
-		const otherQuotes = acc.filter((item:any) => item.name !== quote.name);
+		const otherQuotes = acc.filter((item: IQuoteByName) => item.name !== quote.name);
 
 		return [...otherQuotes, quoteByName];
 	}, []);

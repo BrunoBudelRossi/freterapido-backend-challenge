@@ -1,4 +1,4 @@
-import IQuote from 'domain/quote/IQuote';
+import { IQuote } from 'domain/quote/IQuote';
 import mongoose, { Schema } from 'mongoose';
 
 const QuoteSchema: Schema = new Schema(

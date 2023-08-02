@@ -1,6 +1,8 @@
-import IQuote from 'domain/quote/IQuote';
+import { IQuote } from 'domain/quote/IQuote';
 import IQuoteRepository from 'domain/quote/IQuoteRepository';
-import { Volume, Shipping } from 'domain/shipping/IShipping';
+import {
+	Volume, Shipping, Dispatcher, Offer,
+} from 'domain/shipping/IShipping';
 import axiosInstance from 'infrastructure/gateway/axiosClient';
 import { env } from 'config/env';
 
@@ -38,8 +40,8 @@ export default async (
 	if (response.status === 200) {
 		const { data } = response;
 
-		const quotes = data.dispatchers.reduce((acc: IQuote[], item: any) => {
-			item.offers.forEach((offer: any) => {
+		const quotes = data.dispatchers.reduce((acc: IQuote[], item: Dispatcher) => {
+			item.offers.forEach((offer: Offer) => {
 				const quote: IQuote = {
 					name: '',
 					service: '',
