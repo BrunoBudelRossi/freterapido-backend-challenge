@@ -5,7 +5,7 @@ import QuoteModel from '../../src/infrastructure/db/mongo/models/quote';
 
 describe('QuoteRepository', () => {
 	beforeAll(() => {
-		connect('test');
+		connect();
 	});
 
     beforeEach(async () => {
