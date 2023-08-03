@@ -4,7 +4,7 @@ Claro! Abaixo está o texto com os markdowns corretos para colar no GitHub:
 
 ## Descrição
 
-Desenvolver uma API capaz de
+Desenvolver uma API com 2 endpoints básicos, o primeiro deve criar uma cotação com base em uma consulta na API da Frete Rápido, já o segundo deve consultar métricas das cotações armazenadas no banco de dados.
 
 ## Pré-requisitos
 
