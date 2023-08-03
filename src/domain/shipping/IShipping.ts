@@ -25,11 +25,13 @@ export interface Shipping {
 
 export interface Offer {
 	carrier: {
-		reference: string;
 		name: string;
 	};
 	final_price: number;
 	service: string;
+    delivery_time: {
+        days: number;
+    }
 }
 
 export interface Dispatcher {

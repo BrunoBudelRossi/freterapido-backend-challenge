@@ -13,8 +13,8 @@ export default async (
 		if (quoteByName) {
 			quoteByName.name = quote.name;
 			quoteByName.amount += 1;
-			quoteByName.totalPrice += quote.price;
-			quoteByName.priceAvg = Math.round(quoteByName.totalPrice / quoteByName.amount);
+			quoteByName.totalPrice += Math.round(quote.price);
+			quoteByName.priceAvg = Number((quoteByName.totalPrice / quoteByName.amount).toFixed(2));
 		} else {
 			acc.push({
 				name: quote.name,
@@ -34,13 +34,13 @@ export default async (
 	let moreExpensiveShipping: IQuote = {
 		name: '',
 		service: '',
-		deadline: '',
+		deadline: 0,
 		price: 0,
 	};
 	let cheapestShipping: IQuote = {
 		name: '',
 		service: '',
-		deadline: '',
+		deadline: 0,
 		price: 0,
 	};
 

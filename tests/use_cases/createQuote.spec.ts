@@ -1,47 +1,87 @@
 import MockAdapter from 'axios-mock-adapter';
 import { Shipping } from 'domain/shipping/IShipping';
-// import createQuote from 'application/use_cases/createQuote';
-import createQuote from '../../src/application/use_cases/createQuote';
-import QuoteRepository from 'infrastructure/repositories/quoteRepository';
+import createQuote from 'application/use_cases/createQuote';
 import axiosInstance from 'infrastructure/gateway/axiosClient';
+import IQuoteRepository from 'domain/quote/IQuoteRepository';
+import { IQuote } from 'domain/quote/IQuote';
 
 describe('createQuote', () => {
-	// let quoteRepository: IQuoteRepository;
 	let axiosMock: MockAdapter;
+	const mockQuotes: IQuote[] = [
+		{
+			name: 'UBER',
+			service: 'Normal',
+			deadline: 4,
+			price: 60.74,
+		},
+		{
+			name: 'UBER',
+			service: 'Express',
+			deadline: 4,
+			price: 100.0,
+		},
+		{
+			name: 'CORREIOS',
+			service: 'PAC',
+			deadline: 5,
+			price: 92.45,
+		},
+		{
+			name: 'CORREIOS',
+			service: 'SEDEX',
+			deadline: 5,
+			price: 150.0,
+		},
+	];
+	const mockQuoteRepository: IQuoteRepository = {
+		create: jest.fn(async (quotes: IQuote[]) => {
+			return mockQuotes;
+		}),
+		find: function (lastQuotes?: number | undefined): Promise<IQuote[]> {
+			throw new Error('Function not implemented.');
+		}
+	};
 
 	beforeAll(() => {
 		axiosMock = new MockAdapter(axiosInstance);
 	});
 
 	beforeEach(() => {
-		jest.clearAllMocks(); // Clear all mocks before each test
+		jest.clearAllMocks();
+		axiosMock.reset();
 	});
 
 	it('should create quotes and return carrier information', async () => {
-		// Mock the Axios response for the /quote/simulate API call
 		const mockResponseData = {
-			status: 200,
-			data: {
-				dispatchers: [
-					{
-						offers: [
-							{
-								carrier: {
-									reference: 1647,
-									name: 'UBER',
-								},
-								final_price: 60.74,
-								service: 'Normal',
+			dispatchers: [
+				{
+					offers: [
+						{
+							carrier: {
+								name: 'UBER',
 							},
-							// Add more mocked offers if needed
-						],
-					},
-				],
-			},
+							final_price: 60.74,
+							service: 'Normal',
+							delivery_time: {
+								days: 6,
+							}
+						},
+						{
+							carrier: {
+								name: 'CORREIOS',
+							},
+							final_price: 92.45,
+							service: 'PAC',
+							delivery_time: {
+								days: 5,
+							}
+						},
+					],
+				},
+			],
 		};
 		axiosMock.onPost('/quote/simulate').reply(200, mockResponseData);
 
-		// Create a sample shipping object for the test
 		const shipping: Shipping = {
 			recipient: {
 				address: {
@@ -50,40 +90,40 @@ describe('createQuote', () => {
 			},
 			volumes: [
 				{
-					category: 1,
-					amount: 1,
-					unitary_weight: 1,
-					unitary_price: 100,
-					price: 100,
-					sku: 'abc-teste-123',
-					height: 0.2,
-					width: 0.2,
-					length: 0.2,
+				   category: 7,
+				   amount: 1,
+				   unitary_weight: 5,
+				   unitary_price: 349,
+				   price: 349,
+				   sku: 'abc-teste-123',
+				   height: 0.2,
+				   width: 0.2,
+				   length: 0.2
 				},
-			],
+				{
+				   category: 7,
+				   amount: 2,
+				   unitary_weight: 4,
+				   unitary_price: 349,
+				   price: 556,
+				   sku: 'abc-teste-527',
+				   height: 0.4,
+				   width: 0.6,
+				   length: 0.15
+				}
+			 ]
 		};
 
-		// Call the createQuote function with the mocked data
-		const result = await createQuote(QuoteRepository, shipping);
+		const result = await createQuote(mockQuoteRepository, shipping);
 
-		// Expectations
 		expect(result).toHaveProperty('carrier');
-		expect(QuoteRepository.create).toHaveBeenCalledTimes(1);
-		expect(QuoteRepository.create).toHaveBeenCalledWith([
-			{
-				name: 'UBER',
-				service: 'Normal',
-				deadline: 1647,
-				price: 60.74,
-			},
-		]);
+		expect(result?.carrier).toHaveLength(4);
+		expect(result?.carrier[0].name).toEqual('UBER'); 
 	});
 
 	it('should throw an error when the API call fails', async () => {
-		// Mock the Axios response for the /quote/simulate API call to return an error
 		axiosMock.onPost('/quote/simulate').reply(500);
 
-		// Create a sample shipping object for the test
 		const shipping: Shipping = {
 			recipient: {
 				address: {
@@ -92,22 +132,50 @@ describe('createQuote', () => {
 			},
 			volumes: [
 				{
-					category: 1,
-					amount: 1,
-					unitary_weight: 1,
-					unitary_price: 100,
-					price: 100,
-					sku: 'abc-teste-123',
-					height: 0.2,
-					width: 0.2,
-					length: 0.2,
-				},
-			],
+				   category: 7,
+				   amount: 1,
+				   unitary_weight: 5,
+				   unitary_price: 349,
+				   price: 349,
+				   sku: 'abc-teste-123',
+				   height: 0.2,
+				   width: 0.2,
+				   length: 0.2
+				}
+			]
 		};
 
-		// Call the createQuote function and expect it to throw an error
-		await expect(createQuote(QuoteRepository, shipping)).rejects.toThrow(
+		await expect(createQuote(mockQuoteRepository, shipping)).rejects.toThrow(
 			'Error when calling Frete Rápido API',
+		);
+	});
+
+	it('should throw an unknown error when the API call returns an invalid response', async () => {
+		axiosMock.onPost('/quote/simulate').reply(200, {});
+
+		const shipping: Shipping = {
+			recipient: {
+				address: {
+					zipcode: '01311000',
+				},
+			},
+			volumes: [
+				{
+				   category: 7,
+				   amount: 1,
+				   unitary_weight: 5,
+				   unitary_price: 349,
+				   price: 349,
+				   sku: 'abc-teste-123',
+				   height: 0.2,
+				   width: 0.2,
+				   length: 0.2
+				}
+			]
+		};
+
+		await expect(createQuote(mockQuoteRepository, shipping)).rejects.toThrow(
+			'Unknown error occurred',
 		);
 	});
 });

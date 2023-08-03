@@ -1,12 +1,13 @@
 import mongoose from 'mongoose';
 import { env } from 'config/env';
 
-export const connect = async (): Promise<void> => {
+export const connect = async (databaseName: string): Promise<void> => {
 	mongoose
-		.connect(env.databaseUrl)
+		.connect(env.databaseUrl, {
+			dbName: databaseName,
+		})
 		.then(() => console.log('Connected to mongo database'));
 };
 
 export const close = (): Promise<void> => mongoose.connection
-	.close()
-	.then(() => console.log("Can't connect to mongo database"));
+	.close();

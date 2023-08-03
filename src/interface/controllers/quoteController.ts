@@ -32,7 +32,7 @@ export default {
 	get: async (req: Request, res: Response): Promise<Response> => {
 		try {
 			const lastQuotes = req?.query?.last_quotes;
-			const quote = await getQuotes(quoteRepository, parseInt(lastQuotes as string));
+			const quote = await getQuotes(quoteRepository, Number(lastQuotes as string));
 
 			return res.status(200).json({
 				status: 'success',

@@ -1,7 +1,7 @@
 export interface IQuote {
     name: string;
     service: string;
-    deadline: string;
+    deadline: number;
     price: number;
 }
 
