@@ -13,7 +13,7 @@ export default async (
 		if (quoteByName) {
 			quoteByName.name = quote.name;
 			quoteByName.amount += 1;
-			quoteByName.totalPrice += Math.round(quote.price);
+			quoteByName.totalPrice += Number(quote.price.toFixed(2));
 			quoteByName.priceAvg = Number((quoteByName.totalPrice / quoteByName.amount).toFixed(2));
 		} else {
 			acc.push({
