@@ -1,5 +1,3 @@
-Claro! Abaixo está o texto com os markdowns corretos para colar no GitHub:
-
 # Frete rápido Desafio Backend
 
 ## Descrição
