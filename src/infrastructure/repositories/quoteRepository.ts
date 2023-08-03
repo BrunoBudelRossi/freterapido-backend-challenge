@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
-import IQuoteRepository from 'domain/quote/IQuoteRepository';
-import { IQuote } from 'domain/quote/IQuote';
-import QuoteModel from 'infrastructure/db/mongo/models/quote';
+import IQuoteRepository from '@domain/quote/IQuoteRepository';
+import { IQuote } from '@domain/quote/IQuote';
+import QuoteModel from '@infrastructure/db/mongo/models/quote';
 
 class QuoteRepository implements IQuoteRepository {
 	async create(quotes: IQuote[]): Promise<IQuote[]> {

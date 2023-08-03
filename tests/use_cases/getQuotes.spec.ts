@@ -1,6 +1,6 @@
-import { IQuote, IQuoteByName } from 'domain/quote/IQuote';
-import IQuoteRepository from 'domain/quote/IQuoteRepository';
-import getQuotes from 'application/use_cases/getQuotes';
+import { IQuote, IQuoteByName } from '../../src/domain/quote/IQuote';
+import IQuoteRepository from '../../src/domain/quote/IQuoteRepository';
+import getQuotes from '../../src/application/use_cases/getQuotes';
 
 describe('getQuotes', () => {
 	const mockQuotes: IQuote[] = [

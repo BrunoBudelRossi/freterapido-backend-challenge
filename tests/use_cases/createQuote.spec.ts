@@ -1,9 +1,9 @@
 import MockAdapter from 'axios-mock-adapter';
-import { Shipping } from 'domain/shipping/IShipping';
-import createQuote from 'application/use_cases/createQuote';
-import axiosInstance from 'infrastructure/gateway/axiosClient';
-import IQuoteRepository from 'domain/quote/IQuoteRepository';
-import { IQuote } from 'domain/quote/IQuote';
+import { Shipping } from '../../src/domain/shipping/IShipping';
+import createQuote from '../../src/application/use_cases/createQuote';
+import axiosInstance from '../../src/infrastructure/gateway/axiosClient';
+import IQuoteRepository from '../../src/domain/quote/IQuoteRepository';
+import { IQuote } from '../../src/domain/quote/IQuote';
 
 describe('createQuote', () => {
 	let axiosMock: MockAdapter;

@@ -1,5 +1,5 @@
-import { IQuote, IQuoteByName } from 'domain/quote/IQuote';
-import IQuoteRepository from 'domain/quote/IQuoteRepository';
+import { IQuote, IQuoteByName } from '@domain/quote/IQuote';
+import IQuoteRepository from '@domain/quote/IQuoteRepository';
 
 export default async (
 	quoteRepository: IQuoteRepository,

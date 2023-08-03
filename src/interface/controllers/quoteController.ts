@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import createQuote from 'application/use_cases/createQuote';
-import getQuotes from 'application/use_cases/getQuotes';
-import quoteRepository from 'infrastructure/repositories/quoteRepository';
+import createQuote from '@application/use_cases/createQuote';
+import getQuotes from '@application/use_cases/getQuotes';
+import quoteRepository from '@infrastructure/repositories/quoteRepository';
 
 export default {
 	create: async (req: Request, res: Response): Promise<Response> => {

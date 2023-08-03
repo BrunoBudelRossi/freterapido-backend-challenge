@@ -1,7 +1,7 @@
-import { connect, close } from 'infrastructure/db/mongo/connection';
-import QuoteRepository from 'infrastructure/repositories/quoteRepository';
-import { IQuote } from 'domain/quote/IQuote';
-import QuoteModel from 'infrastructure/db/mongo/models/quote';
+import { connect, close } from '../../src/infrastructure/db/mongo/connection';
+import QuoteRepository from '../../src/infrastructure/repositories/quoteRepository';
+import { IQuote } from '../../src/domain/quote/IQuote';
+import QuoteModel from '../../src/infrastructure/db/mongo/models/quote';
 
 describe('QuoteRepository', () => {
 	beforeAll(() => {

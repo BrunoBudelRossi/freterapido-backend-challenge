@@ -22,21 +22,25 @@ git clone <URL_DO_REPOSITÓRIO>
 cd nome-do-projeto
 ```
 
-3. Inicie os containers necessários para a aplicação com o docker-compose:
-
-```
-docker-compose up -d
-```
-
-4. Instale as dependências do projeto:
+3. Instale as dependências do projeto:
 
 ```
 yarn install
 ```
 
-5. Crie os arquivos `.env` e `.env.test` com base nos arquivos com a extensão `.example`:
+4. Crie os arquivos `.env` e `.env.test` com base nos arquivos com a extensão `.example`.
 
 ## Uso
+
+Para rodar o projeto utilizando Docker, utilize o seguinte comando:
+
+```
+docker-compose build
+```
+
+```
+docker-compose up
+```
 
 Para rodar o projeto em modo de desenvolvimento, utilize o seguinte comando:
 
@@ -44,7 +48,7 @@ Para rodar o projeto em modo de desenvolvimento, utilize o seguinte comando:
 yarn dev
 ```
 
-Isso iniciará o servidor local e disponibilizará a aplicação em `http://localhost:PORTA` (substitua "PORTA" pelo número da porta configurada no arquivo `.env` do projeto).
+Em ambos os casos, um servidor local é iniciado, disponibilizando a aplicação em `http://localhost:PORTA` (substitua "PORTA" pelo número da porta configurada no arquivo `.env` do projeto).
 
 ## Testes
 

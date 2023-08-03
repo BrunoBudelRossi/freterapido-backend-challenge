@@ -19,6 +19,13 @@ const config: Config = {
     "**/**/*.spec.ts"
   ],
   testTimeout: 15000,
+  moduleNameMapper: {
+    '^@application/(.*)$': '<rootDir>/src/application/$1',
+    '^@domain/(.*)$': '<rootDir>/src/domain/$1',
+    '^@infrastructure/(.*)$': '<rootDir>/src/infrastructure/$1',
+    '^@interface/(.*)$': '<rootDir>/src/interface/$1',
+    '^@config/(.*)$': '<rootDir>/src/config/$1',
+  },
 };
 
 export default config;

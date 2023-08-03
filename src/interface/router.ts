@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import quoteController from 'interface/controllers/quoteController';
-import { quoteValidator } from 'infrastructure/validator/quoteValidator';
-import validate from 'infrastructure/validator/validator';
+import quoteController from '@interface/controllers/quoteController';
+import { quoteValidator } from '@infrastructure/validator/quoteValidator';
+import validate from '@infrastructure/validator/validator';
 
 const router = Router();
 

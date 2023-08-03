@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "incremental": true,
-    "outDir": "dist",
-    "rootDirs": ["src", "tests"],
+    "outDir": "./dist",
+    "rootDirs": ["./src", "./tests"],
     "target": "es2021",
     "sourceMap": true,
     "skipLibCheck": true,
@@ -10,12 +10,28 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "src",
     "strict": true,
     "noImplicitOverride": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "baseUrl": ".",
+    "paths": {
+      "@application/*": ["./src/application/*"],
+      "@domain/*": ["./src/domain/*"],
+      "@infrastructure/*": ["./src/infrastructure/*"],
+      "@interface/*": ["./src/interface/*"],
+      "@config/*": ["./src/config/*"]
+    }
   },
-  "include": ["src", "tests"]
+  "include": ["src/**/*", "tests"],
+  "exclude": [
+    "./plugins/**/*",
+    "./typings/**/*",
+    "./built/**/*",
+    "./dist/*",
+    "./tests/*",
+    "./node_modules/*"
+]
 }

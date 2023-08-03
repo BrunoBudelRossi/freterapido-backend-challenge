@@ -1,11 +1,11 @@
 /* eslint-disable consistent-return */
-import { IQuote } from 'domain/quote/IQuote';
-import IQuoteRepository from 'domain/quote/IQuoteRepository';
+import { IQuote } from '@domain/quote/IQuote';
+import IQuoteRepository from '@domain/quote/IQuoteRepository';
 import {
 	Volume, Shipping, Dispatcher, Offer,
-} from 'domain/shipping/IShipping';
-import axiosInstance from 'infrastructure/gateway/axiosClient';
-import { env } from 'config/env';
+} from '@domain/shipping/IShipping';
+import axiosInstance from '@infrastructure/gateway/axiosClient';
+import { env } from '@config/env';
 import { isAxiosError } from 'axios';
 
 export default async (

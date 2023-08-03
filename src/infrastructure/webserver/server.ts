@@ -1,7 +1,7 @@
 import express, { json, urlencoded } from 'express';
-import router from 'interface/router';
+import router from '@interface/router';
 import cors from 'cors';
-import { env } from 'config/env';
+import { env } from '@config/env';
 
 export const app = express();
 
