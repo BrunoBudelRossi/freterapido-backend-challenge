@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Desenvolver uma API com 2 endpoints básicos, o primeiro deve criar uma cotação com base em uma consulta na API da Frete Rápido, já o segundo deve consultar métricas das cotações armazenadas no banco de dados.
+Desenvolver uma API com 2 endpoints, o primeiro deve criar uma cotação com base em uma consulta na API da Frete Rápido, já o segundo deve consultar métricas das cotações armazenadas no banco de dados.
 
 ## Pré-requisitos
 
